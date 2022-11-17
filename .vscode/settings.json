@@ -1,5 +1,8 @@
 {
 	"[typescript]": {
 		"editor.tabSize": 2
+	},
+	"[graphql]": {
+		"editor.tabSize": 2
 	}
 }

@@ -1,0 +1,51 @@
+type Class {
+  key: Int!
+  name: String!
+}
+
+type Category {
+  key: Int!
+  name: String!
+}
+
+type User {
+  key: Int!
+  classKey: Int!
+  userId: String!
+  userPassword: String!
+  userName: String!
+
+  class: Class!
+}
+
+type Post {
+  key: Int!
+  userKey: Int!
+  categoryKey: Int!
+  title: String!
+  body: String!
+  time: String!
+  viewCount: Int!
+
+  postUser: User!
+  comments: [Comment]!
+  category: Category!
+}
+
+type Comment {
+  key: Int!
+  userKey: Int
+  postKey: Int!
+  time: String!
+  body: String!
+  parentKey: Int
+
+  childComment: [Comment]!
+  commentUser: User
+}
+
+type Query {
+  user(key: Int!): User
+  allPosts: [Post]
+  post(key: Int!): Post
+}
