@@ -8,7 +8,6 @@ export class UserService {
     const sql =
       'SELECT `userKey` as `key`, `userName`, `id` as `userId`, `passwd` as `userPassword`, `classKey` FROM User WHERE `userKey`=?';
     const result = await pool.query(sql, [key]);
-    console.log('result', result);
     return result[0];
   }
 

@@ -6,6 +6,10 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { PostService } from './post/post.service';
 import { PostResolver } from './post/post.resolver';
+import { CategoryResolver } from './category/category.resolver';
+import { CategoryService } from './category/category.service';
+import { CommentResolver } from './comment/comment.resolver';
+import { CommentService } from './comment/comment.service';
 
 @Module({
   imports: [
@@ -19,6 +23,6 @@ import { PostResolver } from './post/post.resolver';
     }),
   ],
   controllers: [],
-  providers: [UserService, UserResolver, PostService, PostResolver],
+  providers: [UserService, UserResolver, PostService, PostResolver, CategoryResolver, CategoryService, CommentResolver, CommentService],
 })
 export class AppModule {}

@@ -1,4 +1,7 @@
 import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { CategoryService } from 'src/category/category.service';
+import { CommentService } from 'src/comment/comment.service';
+import { Post } from 'src/graphql';
 import { UserService } from 'src/user/user.service';
 import { PostService } from './post.service';
 
@@ -7,6 +10,8 @@ export class PostResolver {
   constructor(
     private readonly postService: PostService,
     private readonly userService: UserService,
+    private readonly categoryService: CategoryService,
+    private readonly commentService: CommentService,
   ) {}
 
   @Query('allPosts')
@@ -15,8 +20,17 @@ export class PostResolver {
   }
 
   @ResolveField('postUser')
-  async getPostUser(@Parent() post) {
-    console.log('post', post);
+  async getPostUser(@Parent() post: Post) {
     return this.userService.getUserbyKey(post.userKey);
+  }
+
+  @ResolveField('comments')
+  async getComments(@Parent() post: Post) {
+    return this.commentService.getComments(post);
+  }
+
+  @ResolveField('category')
+  async getCategory(@Parent() post: Post) {
+    return this.categoryService.getCategorybyKey(post.categoryKey);
   }
 }

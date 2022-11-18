@@ -28,7 +28,7 @@ type Post {
   viewCount: Int!
 
   postUser: User!
-  comments: [Comment]!
+  comments: [Comment]
   category: Category!
 }
 
@@ -40,7 +40,7 @@ type Comment {
   body: String!
   parentKey: Int
 
-  childComment: [Comment]!
+  childComment: [Comment]
   commentUser: User
 }
 

@@ -36,7 +36,7 @@ export class Post {
     time: string;
     viewCount: number;
     postUser: User;
-    comments: Nullable<Comment>[];
+    comments?: Nullable<Nullable<Comment>[]>;
     category: Category;
 }
 
@@ -47,7 +47,7 @@ export class Comment {
     time: string;
     body: string;
     parentKey?: Nullable<number>;
-    childComment: Nullable<Comment>[];
+    childComment?: Nullable<Nullable<Comment>[]>;
     commentUser?: Nullable<User>;
 }
 
