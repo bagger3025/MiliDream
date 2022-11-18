@@ -96,3 +96,7 @@ $ sudo service mysql restart
 
 $ sudo mysql -u test -p < base.sql
 ```
+
+# GraphQL Playground 사용법
+
+`npm run start:dev`한 후, `http://localhost:3000/graphql`로 접속
