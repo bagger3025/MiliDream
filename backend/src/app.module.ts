@@ -23,6 +23,15 @@ import { CommentService } from './comment/comment.service';
     }),
   ],
   controllers: [],
-  providers: [UserService, UserResolver, PostService, PostResolver, CategoryResolver, CategoryService, CommentResolver, CommentService],
+  providers: [
+    UserService,
+    UserResolver,
+    PostService,
+    PostResolver,
+    CategoryResolver,
+    CategoryService,
+    CommentResolver,
+    CommentService,
+  ],
 })
 export class AppModule {}

@@ -59,4 +59,18 @@ export abstract class IQuery {
     abstract post(key: number): Nullable<Post> | Promise<Nullable<Post>>;
 }
 
+export abstract class IMutation {
+    abstract postBoard(title: string, body: string): Post | Promise<Post>;
+
+    abstract postComment(body: string): Comment | Promise<Comment>;
+
+    abstract postUser(userId: string, userPassword: string, userName: string): Nullable<User> | Promise<Nullable<User>>;
+
+    abstract deleteBoard(key: number): boolean | Promise<boolean>;
+
+    abstract deleteComment(key: number): boolean | Promise<boolean>;
+
+    abstract deleteUser(key: number): boolean | Promise<boolean>;
+}
+
 type Nullable<T> = T | null;

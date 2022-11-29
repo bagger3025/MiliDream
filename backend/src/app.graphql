@@ -55,7 +55,7 @@ type Mutation {
   postComment(body: String!): Comment!
   postUser(userId: String!, userPassword: String!, userName: String!): User
 
-  deleteBoard(key: Int!): boolean!
-  deleteComment(key: Int!): boolean!
-  deleteUser(key: Int!): boolean!
+  deleteBoard(key: Int!): Boolean!
+  deleteComment(key: Int!): Boolean!
+  deleteUser(key: Int!): Boolean!
 }
