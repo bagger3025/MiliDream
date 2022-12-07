@@ -1,4 +1,11 @@
-import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Int,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { CategoryService } from 'src/category/category.service';
 import { CommentService } from 'src/comment/comment.service';
 import { Post } from 'src/graphql';
@@ -17,6 +24,11 @@ export class PostResolver {
   @Query('allPosts')
   async getAllPosts() {
     return this.postService.getAllPosts();
+  }
+
+  @Query('post')
+  async getPost(@Args('key', { type: () => Int }) key: number) {
+    return this.postService.getPost(key);
   }
 
   @ResolveField('postUser')
