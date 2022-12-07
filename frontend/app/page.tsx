@@ -25,19 +25,36 @@ export default async function Home() {
 		}),
 	});
 
-	const result: { data: postQuery } = await data.json();
-	console.log(result["data"]);
+	// return <div dangerouslySetInnerHTML={{ __html: await data.text() }}></div>;
+	console.log(data);
 
-	const postList: postType[] = result["data"]["allPosts"];
+	let result: { data: postQuery };
+	let postList: postType[];
+	let success = true;
+
+	try {
+		result = await data.json();
+		postList = result["data"]["allPosts"];
+	} catch (err) {
+		postList = [];
+		success = false;
+	}
+
 	return (
 		<>
 			<div>Hello!</div>
-			<div>Here is post lists:</div>
-			<ul>
-				{postList.map((ele) => {
-					return <li key={ele.key}>{ele.title}</li>;
-				})}
-			</ul>
+			{success ? (
+				<>
+					<div>Here is post lists:</div>
+					<ul>
+						{postList.map((ele) => {
+							return <li key={ele.key}>{ele.title}</li>;
+						})}
+					</ul>
+				</>
+			) : (
+				<div>Could not access to backend</div>
+			)}
 		</>
 	);
 }
