@@ -1,10 +1,10 @@
 import { postQuery } from "./type";
 
-async function fetchData(query: string) {
+async function fetchData(query: string, variables?: object) {
 	return fetch(process.env.BACKEND_API as string, {
 		method: "POST",
 		headers: { "content-type": "application/json" },
-		body: JSON.stringify({ query }),
+		body: JSON.stringify({ query, variables }),
 	});
 }
 
@@ -26,4 +26,4 @@ async function getAllPosts() {
 	}
 }
 
-export { getAllPosts };
+export { getAllPosts, fetchData };
