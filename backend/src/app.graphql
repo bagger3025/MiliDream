@@ -44,6 +44,27 @@ type Comment {
   commentUser: User
 }
 
+input BoardInfo {
+  title: String!
+  body: String!
+  userKey: Int!
+  categoryKey: Int!
+}
+
+input UserInfo {
+  userId: String!
+  userPassword: String!
+  userName: String!
+  userClassKey: Int!
+}
+
+input CommentInfo {
+  body: String!
+  userKey: Int!
+  postKey: Int!
+  parentCommentKey: Int!
+}
+
 type Query {
   user(key: Int!): User
   allPosts: [Post]
@@ -51,9 +72,9 @@ type Query {
 }
 
 type Mutation {
-  postBoard(title: String!, body: String!): Post!
-  postComment(body: String!): Comment!
-  postUser(userId: String!, userPassword: String!, userName: String!): User
+  postBoard(boardInfo: BoardInfo!): Boolean!
+  postComment(commentInfo: CommentInfo!): Boolean!
+  postUser(userInfo: UserInfo): User
 
   deleteBoard(key: Int!): Boolean!
   deleteComment(key: Int!): Boolean!

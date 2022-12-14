@@ -9,3 +9,9 @@ export const pool = mariadb.createPool({
   database: process.env.DB_DBNAME,
   connectionLimit: 5,
 });
+
+export type postResult = {
+  affectedRows: number;
+  insertId: number;
+  warningStatus: number;
+};

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { pool } from 'src/module/mariadb';
+import { BoardInfo } from 'src/graphql';
+import { pool, postResult } from 'src/module/mariadb';
 
 @Injectable()
 export class PostService {
@@ -19,5 +20,25 @@ export class PostService {
 
     if (result.length === 1) return result[0];
     else return null;
+  }
+
+  async postBoard(boardInfo: BoardInfo) {
+    const sql =
+      'INSERT INTO `Post` (`userKey`, `title`, `body`, `categoryKey`) VALUES (?, ?, ?, ?);';
+    const result: postResult = await pool.query(sql, [
+      boardInfo.userKey,
+      boardInfo.title,
+      boardInfo.body,
+      boardInfo.categoryKey,
+    ]);
+
+    return result.affectedRows === 1;
+  }
+
+  async deleteBoard(key: number) {
+    const sql = 'DELETE FROM `Post` WHERE `key`=?';
+    const result: postResult = await pool.query(sql, [key]);
+
+    return result.affectedRows === 1;
   }
 }

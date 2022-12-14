@@ -5,6 +5,7 @@ import {
   Query,
   ResolveField,
   Resolver,
+  Mutation,
 } from '@nestjs/graphql';
 import { CategoryService } from 'src/category/category.service';
 import { CommentService } from 'src/comment/comment.service';
@@ -44,5 +45,15 @@ export class PostResolver {
   @ResolveField('category')
   async getCategory(@Parent() post: Post) {
     return this.categoryService.getCategorybyKey(post.categoryKey);
+  }
+
+  @Mutation('postBoard')
+  async postBoard(@Args('boardInfo') boardInfo) {
+    return this.postService.postBoard(boardInfo);
+  }
+
+  @Mutation('deleteBoard')
+  async deleteBoard(@Args('key') key) {
+    return this.postService.deleteBoard(key);
   }
 }

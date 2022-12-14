@@ -8,6 +8,27 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class BoardInfo {
+    title: string;
+    body: string;
+    userKey: number;
+    categoryKey: number;
+}
+
+export class UserInfo {
+    userId: string;
+    userPassword: string;
+    userName: string;
+    userClassKey: number;
+}
+
+export class CommentInfo {
+    body: string;
+    userKey: number;
+    postKey: number;
+    parentCommentKey: number;
+}
+
 export class Class {
     key: number;
     name: string;
@@ -60,11 +81,11 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract postBoard(title: string, body: string): Post | Promise<Post>;
+    abstract postBoard(boardInfo: BoardInfo): boolean | Promise<boolean>;
 
-    abstract postComment(body: string): Comment | Promise<Comment>;
+    abstract postComment(commentInfo: CommentInfo): boolean | Promise<boolean>;
 
-    abstract postUser(userId: string, userPassword: string, userName: string): Nullable<User> | Promise<Nullable<User>>;
+    abstract postUser(userInfo?: Nullable<UserInfo>): Nullable<User> | Promise<Nullable<User>>;
 
     abstract deleteBoard(key: number): boolean | Promise<boolean>;
 
