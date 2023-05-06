@@ -9,7 +9,7 @@ import { Comment, CommentInfo } from 'src/graphql';
 import { UserService } from 'src/user/user.service';
 import { CommentService } from './comment.service';
 
-@Resolver()
+@Resolver('Comment')
 export class CommentResolver {
   constructor(
     private readonly commentService: CommentService,

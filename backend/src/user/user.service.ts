@@ -6,7 +6,7 @@ import { pool, postResult } from 'src/module/mariadb';
 export class UserService {
   async getUserbyKey(key: number) {
     const sql =
-      'SELECT `userKey` as `key`, `userName`, `id` as `userId`, `passwd` as `userPassword`, `classKey` FROM User WHERE `userKey`=?';
+      'SELECT `userKey` as `key`, `userName`, `id` as `userId`, `passwd` as `userPassword`, `classKey` FROM `User` WHERE `userKey`=?';
     const result = await pool.query(sql, [key]);
     return result[0];
   }

@@ -15,6 +15,7 @@ export class UserResolver {
 
   @Query('user')
   getUserbyKey(@Args('key') key: number) {
+    console.log("We've got userkey=", key);
     return this.userService.getUserbyKey(key);
   }
 
