@@ -76,9 +76,9 @@ Nest is [MIT licensed](LICENSE).
 
 ```bash
 $ sudo apt update
-$ sudo apt install mariadb-server=1:10.3.34-0ubuntu0.20.04.1
+$ sudo apt install mariadb-server=1:10.3.38-0ubuntu0.20.04.1
 $ mariadb -V
-mariadb  Ver 15.1 Distrib 10.3.34-MariaDB, for debian-linux-gnu (x86_64) using readline 5.2
+mariadb  Ver 15.1 Distrib 10.3.38-MariaDB, for debian-linux-gnu (x86_64) using readline 5.2
 
 $ sudo service mysql start
 $ sudo service mysql status
