@@ -53,7 +53,7 @@ export class PostResolver {
   }
 
   @Mutation('deleteBoard')
-  async deleteBoard(@Args('key') key) {
+  async deleteBoard(@Args('key', { type: () => Int }) key: number) {
     return this.postService.deleteBoard(key);
   }
 }

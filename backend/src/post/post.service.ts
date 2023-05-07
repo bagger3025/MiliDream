@@ -36,7 +36,7 @@ export class PostService {
   }
 
   async deleteBoard(key: number) {
-    const sql = 'DELETE FROM `Post` WHERE `key`=?';
+    const sql = 'DELETE FROM `Post` WHERE `postKey`=?;';
     const result: postResult = await pool.query(sql, [key]);
 
     return result.affectedRows === 1;

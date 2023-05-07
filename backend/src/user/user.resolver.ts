@@ -15,7 +15,6 @@ export class UserResolver {
 
   @Query('user')
   getUserbyKey(@Args('key') key: number) {
-    console.log("We've got userkey=", key);
     return this.userService.getUserbyKey(key);
   }
 
@@ -31,7 +30,6 @@ export class UserResolver {
 
   @Mutation('deleteUser')
   deleteUser(@Args('key') key: number) {
-    console.log(typeof key);
     return this.userService.deleteUser(key);
   }
 }

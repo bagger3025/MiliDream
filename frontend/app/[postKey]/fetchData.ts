@@ -2,8 +2,8 @@ import { fetchData } from "../fetchData";
 import { postQuery } from "../type";
 
 async function getPost(postKey: number) {
-	const data = await fetchData(
-		`query($postKey: Int!) {
+  const data = await fetchData(
+    `query($postKey: Int!) {
 			post(key: $postKey) {
 				key
 				categoryKey
@@ -47,16 +47,62 @@ async function getPost(postKey: number) {
 				name
 			}
 		}`,
-		{ postKey }
-	);
-
-	try {
-		const result: { data: postQuery } = await data.json();
-		const post = result["data"]["post"];
-		return { ok: true, post };
-	} catch (err) {
-		return { ok: false };
-	}
+    { postKey }
+  );
+  try {
+    const result: { data: postQuery } = await data.json();
+    const post = result["data"]["post"];
+    return { ok: true, post };
+  } catch (err) {
+    return { ok: false };
+  }
 }
 
-export { getPost };
+async function mutateComment(
+  user: { key: number },
+  post: { key: number },
+  commentBody: string
+) {
+  const data = await fetchData(
+    `
+	mutation($commentInfo: CommentInfo!) {
+		postComment(commentInfo:$commentInfo)
+	}
+	`,
+    {
+      commentInfo: {
+        body: commentBody,
+        userKey: user.key,
+        postKey: post.key,
+        parentCommentKey: null,
+      },
+    }
+  );
+
+  try {
+    const result = await data.json();
+    console.log(result);
+    return { ok: true };
+  } catch (err) {
+    return { ok: false };
+  }
+}
+
+async function deleteButton(commentKey: number) {
+  const data = await fetchData(
+    `mutation($key: Int!) {
+			deleteComment(key:$key)
+		}`,
+    { key: commentKey }
+  );
+
+  try {
+    const result = await data.json();
+    console.log(result);
+    return { ok: true };
+  } catch (err) {
+    return { ok: false };
+  }
+}
+
+export { getPost, mutateComment, deleteButton };

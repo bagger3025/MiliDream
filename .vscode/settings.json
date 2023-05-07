@@ -1,8 +1,10 @@
 {
-	"[typescript]": {
-		"editor.tabSize": 2
-	},
-	"[graphql]": {
-		"editor.tabSize": 2
-	}
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "[graphql]": {
+    "editor.tabSize": 2
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

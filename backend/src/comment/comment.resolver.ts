@@ -4,10 +4,13 @@ import {
   ResolveField,
   Resolver,
   Args,
+  Query,
+  Int,
 } from '@nestjs/graphql';
-import { Comment, CommentInfo } from 'src/graphql';
+import { Comment } from 'src/graphql';
 import { UserService } from 'src/user/user.service';
 import { CommentService } from './comment.service';
+import { CommentInfoInput } from 'src/graphql-extended';
 
 @Resolver('Comment')
 export class CommentResolver {
@@ -15,6 +18,11 @@ export class CommentResolver {
     private readonly commentService: CommentService,
     private readonly userService: UserService,
   ) {}
+
+  @Query('comment')
+  getComment(@Args('key', { type: () => Int }) key: number) {
+    return this.commentService.getCommentByKey(key);
+  }
 
   @ResolveField('childComment')
   getChildComments(@Parent() comment: Comment) {
@@ -27,12 +35,17 @@ export class CommentResolver {
   }
 
   @Mutation('postComment')
-  postComment(@Args('commentInfo') commentInfo: CommentInfo) {
+  postComment(
+    @Args('commentInfo', { type: () => CommentInfoInput })
+    commentInfo: CommentInfoInput,
+  ) {
+    console.log('HELLO!', commentInfo);
     return this.commentService.postComment(commentInfo);
   }
 
   @Mutation('deleteComment')
   deleteComment(@Args('key') key: number) {
+    console.log('deleteComment', key);
     return this.commentService.deleteComment(key);
   }
 }

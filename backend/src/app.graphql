@@ -62,13 +62,14 @@ input CommentInfo {
   body: String!
   userKey: Int!
   postKey: Int!
-  parentCommentKey: Int!
+  parentCommentKey: Int
 }
 
 type Query {
   user(key: Int!): User
   allPosts: [Post]
   post(key: Int!): Post
+  comment(key: Int!): Comment
 }
 
 type Mutation {

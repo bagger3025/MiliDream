@@ -26,7 +26,7 @@ export class CommentInfo {
     body: string;
     userKey: number;
     postKey: number;
-    parentCommentKey: number;
+    parentCommentKey?: Nullable<number>;
 }
 
 export class Class {
@@ -78,6 +78,8 @@ export abstract class IQuery {
     abstract allPosts(): Nullable<Nullable<Post>[]> | Promise<Nullable<Nullable<Post>[]>>;
 
     abstract post(key: number): Nullable<Post> | Promise<Nullable<Post>>;
+
+    abstract comment(key: number): Nullable<Comment> | Promise<Nullable<Comment>>;
 }
 
 export abstract class IMutation {
